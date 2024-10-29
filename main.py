@@ -1,5 +1,8 @@
 import numpy as np
+import matplotlib.pyplot as plt
 from sklearn.model_selection import train_test_split
+from sklearn.metrics import confusion_matrix
+import seaborn as sns
 from decision_tree import DecisionTree
 
 X = np.random.randint(2, size=(5, 5))
@@ -23,3 +26,12 @@ print("Predykcja:")
 print(y_pred)
 print("Dokładność modelu:")
 print(accuracy)
+
+cm = confusion_matrix(y_test, y_pred)
+
+plt.figure(figsize=(6, 5))
+sns.heatmap(cm, annot=True, fmt='d', cmap='Blues', cbar=False)
+plt.xlabel("Predicted labels")
+plt.ylabel("True labels")
+plt.title("Confusion Matrix")
+plt.show()
